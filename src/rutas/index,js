@@ -1,0 +1,9 @@
+const { Router } = require('express');
+const {body, query } = require('express-validator');
+const ControladorInicial = require('../controladores/ControladorInicial');
+const rutas = Router();
+rutas.get('/', ControladorInicial.Inicio);
+rutas.get('/detallecompras', ControladorInicial.prestamos);  
+
+
+module.exports = rutas;
