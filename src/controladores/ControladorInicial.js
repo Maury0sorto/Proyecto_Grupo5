@@ -1,11 +1,7 @@
 const {body, validationResult } = require('express-validator');
-// const ModeloPrestamo = require('../modelos/ModeloPrestamo');
 
 exports.Inicio = (req, res) =>{
-    // const listaModulos =[
-    //     {modulo: "Empleados", ruta: "/api/empleados"},
-    //     {modulo: "Clientes", ruta: "/api/clientes"},
-    // ];
+    
     const msj ={
         Nombre: "El mejor grupo de la historia mundial",
         Seccion: "1301",
