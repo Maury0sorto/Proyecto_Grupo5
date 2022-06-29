@@ -3,7 +3,7 @@ const {body, query } = require('express-validator');
 const ControladorInicial = require('../controladores/ControladorInicial');
 const rutas = Router();
 rutas.get('/', ControladorInicial.Inicio);
-rutas.get('/detallecompras', ControladorInicial.prestamos);  
+rutas.get('/detallecompras', ControladorInicial.detallecompras);  
 
 
 module.exports = rutas;
