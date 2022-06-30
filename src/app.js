@@ -1,7 +1,7 @@
-/*const express = require('express');
+const express = require('express');
 const morgan = require('morgan');
 //const path = require('path');
-//require('dotenv').config();
+require('dotenv').config();
 
 const app = express();  
 app.set('port',3001); 
@@ -12,12 +12,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 
-app.use('/api/', require('./Proyecto_Grupo5/src/rutas'));      
-//app.use('/api/', require('./src/rutas/index'));
+app.use('/api/', require('./rutas'));      
+//app.use('/api/', require('./rutas/index'));
 
 
 app.listen(app.get('port'), () => {  
     console.log('Servidor iniciado en el puerto ' + app.get('port'));
     
 });
- */
+

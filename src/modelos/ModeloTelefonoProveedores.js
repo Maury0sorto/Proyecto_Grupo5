@@ -23,6 +23,7 @@ const TelefonoProveedores = db.define(
 
         idproveedores:{
             type: DataTypes.INTEGER, 
+            foreignKey: true,
             allowNull: false,
         }
     },

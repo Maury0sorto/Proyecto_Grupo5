@@ -1,22 +1,27 @@
 const {body, validationResult } = require('express-validator');
-// const ModeloPrestamo = require('../modelos/ModeloPrestamo');
+
 
 exports.Inicio = (req, res) =>{
-    // const listaModulos =[
-    //     {modulo: "Empleados", ruta: "/api/empleados"},
-    //     {modulo: "Clientes", ruta: "/api/clientes"},
-    // ];
+    const listaModulos =[
+        {modulo: "Proveedores", ruta: "/api/proveedores"},
+        {modulo: "TelefonoProveedores", ruta: "/api/telefonoproveedores"},
+    ];
     const msj ={
         Nombre: "El mejor grupo de la historia mundial",
         Seccion: "1301",
         Clase: "Programacion Movil II",
+        listaModulos
         
     };
     res.json(msj);
 };
 
+
+
+
+///////////////////////////////////////////////////////////////
 exports.detallecompras = (req, res) =>{
-    const listaModulos =[
+    const listaModulosCompra =[
         {modulo: "Listar", ruta: "/api/detallecompra/listar"},
         {modulo: "Guardar", ruta: "/api/detallecompra/guardar"},
         {modulo: "Eliminar", ruta: "/api/detallecompra/eliminar"},
@@ -25,7 +30,7 @@ exports.detallecompras = (req, res) =>{
     ];
     const msj ={
         
-        listaModulos
+        listaModulosCompra
     };
     res.json(msj);
 };
