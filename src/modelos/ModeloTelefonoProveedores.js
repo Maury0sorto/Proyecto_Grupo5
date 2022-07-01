@@ -28,7 +28,7 @@ const TelefonoProveedores = db.define(
         }
     },
     {
-        tableName: 'telefonoproveedores',
+        tableName: 'telefono_proveedores',
         Timestamps: 'false',
     }
 

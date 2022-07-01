@@ -1,6 +1,9 @@
 const {body, validationResult, query } = require ('express-validator');
-const ModeloTelefonoProveedores = require('../modelos/ModeloTelefonoPoveedores'); 
+const ModeloTelefonoProveedores = require('../modelos/ModeloTelefonoProveedores'); 
 
+
+const  Idpro = require('../modelos/ModeloTelefonoProveedores'); 
+const  Tel = require('../modelos/ModeloTelefonoProveedores'); 
 
 ///////////////////// Funcion listar /////////////////////////////
 exports.Listar = async (req,res)=>{  
@@ -46,7 +49,7 @@ exports.Listar = async (req,res)=>{
         }
         else{
               try{  
-                    const buscarContacto= Usuario.findOne({ 
+                    const buscarContacto= Tel.findOne({ 
                         where:{
                           contacto:contacto
                         }
@@ -55,7 +58,7 @@ exports.Listar = async (req,res)=>{
                         msj.mensaje += 'El contacto ya existe ';
                     }
                     else{
-                         const buscarTelefono = Usuario.findOne({
+                         const buscarTelefono = Tel.findOne({
                              where: {
                               telefono
                              }
@@ -64,7 +67,7 @@ exports.Listar = async (req,res)=>{
                             msj.mensaje += 'El telefono ya existe.  ';
                         } 
                         else{
-                            const buscaridproveedores = Empleado.findOne({
+                            const buscaridproveedores = Idpro.findOne({
                                     where:{
                                       idproveedores: idproveedores
                                     }

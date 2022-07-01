@@ -1,6 +1,10 @@
 
 const {body, validationResult, query } = require ('express-validator');
+//const Proveedores = require('../modelos/ModeloProveedores');
 const ModeloProveedores = require('../modelos/ModeloProveedores'); 
+
+const  Provee = require('../modelos/ModeloProveedores'); 
+const  Rt = require('../modelos/ModeloProveedores'); 
 
 
 ///////////////////// Funcion listar /////////////////////////////
@@ -48,7 +52,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
         }
         else{
               try{  
-                    const buscarNombre = Usuario.findOne({ //que busque uno
+                    const buscarNombre = Provee.findOne({ //que busque uno
                         where:{
                             nombre:nombre
                         }
@@ -57,7 +61,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
                         msj.mensaje += 'El Nombre ya existe ';
                     }
                     else{
-                         const buscarCorreo = Usuario.findOne({
+                         const buscarCorreo = Provee.findOne({
                              where: {
                                  correo
                              }
@@ -66,7 +70,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
                             msj.mensaje += 'El correo ya existe.  ';
                         } 
                         else{
-                            const buscarRTN = Empleado.findOne({
+                            const buscarRTN = Rt.findOne({
                                     where:{
                                         rtn: rtn
                                     }
