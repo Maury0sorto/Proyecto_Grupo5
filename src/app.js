@@ -12,7 +12,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 
-app.use('/api/', require('./rutas'));      
+app.use('/api/', require('./rutas'));   
+app.use('/api/proveedores', require('./rutas/RutasProveedores'));     
+app.use('/api/telefonoproveedores', require('./rutas/RutasTelefonoProveedores'));     
 //app.use('/api/', require('./rutas/index'));
 
 

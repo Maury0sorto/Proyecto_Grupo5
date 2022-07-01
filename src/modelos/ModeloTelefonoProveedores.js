@@ -4,7 +4,7 @@ const TelefonoProveedores = db.define(
 ////// Modelo De telefono de proveedores Mauricio  Zavala ///////////
     'telefonoproveedores',
     {
-        idtelefonoproveedores:{
+        id:{
             type: DataTypes.INTEGER, 
             primaryKey: true,
             autoIncrement: true,

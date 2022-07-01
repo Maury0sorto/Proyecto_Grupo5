@@ -24,3 +24,90 @@ exports.Listar = async (req,res)=>{
 
 
   ///////////////////// Fin Funcion listar /////////////////////////////
+
+
+  ////////////////////// Inicio Funcion Guardar ////////////////////////////
+  exports.Guardar = async (req, res) => {
+    const validaciones = validationResult(req);
+
+    
+        const {contacto, telefono, idproveedores} = req.body;
+        const msj = {
+                mensaje: " "  
+        };
+    
+    
+        if(validaciones.errors.length > 0 ) 
+        {
+          validaciones.errors.forEach(element => {
+            msj.mensaje+=element.msg + '. ';
+    
+          });
+        }
+        else{
+              try{  
+                    const buscarContacto= Usuario.findOne({ 
+                        where:{
+                          contacto:contacto
+                        }
+                    });
+                    if(buscarContacto){  
+                        msj.mensaje += 'El contacto ya existe ';
+                    }
+                    else{
+                         const buscarTelefono = Usuario.findOne({
+                             where: {
+                              telefono
+                             }
+                         });
+                         if(buscarTelefono){
+                            msj.mensaje += 'El telefono ya existe.  ';
+                        } 
+                        else{
+                            const buscaridproveedores = Empleado.findOne({
+                                    where:{
+                                      idproveedores: idproveedores
+                                    }
+                            });
+                            if(!buscaridproveedores)
+                            {
+                                msj.mensaje += 'El id de proveedor no existe.  ';
+                            }
+                            else{
+                                msj.mensaje ='Peticion procesada con exito';
+                            }
+                        }        
+                    }
+                
+               // } 
+        
+                //} 
+
+//>>
+
+                  if(!idproveedores){
+                    await ModeloTelefonoProveedores.create({
+                      idproveedores: idproveedores
+                    });
+                  }
+                   else{
+                     await ModeloTelefonoProveedores.create({
+                       
+                       contacto: contacto,
+                       telefono: telefono,
+                       idproveedores: idproveedores
+                  
+                     
+                     });
+                   }
+                   msj.mensaje = 'Peticion ejecutada correctamente';
+                   } catch (error) {
+                    msj.mensaje= 'Error al guardar los datos';
+                  }   
+        }
+        
+    res.json(msj); 
+    };
+    
+
+    //////////////////////////// Fin Funcion Guardar //////////////////

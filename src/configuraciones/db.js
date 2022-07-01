@@ -1,13 +1,13 @@
 const sequelize = require('sequelize');
 const db = new sequelize(
 
-    'movil2', //'nombre de la base de datos',  //sifcon
-   'root', //'el usaurio de la db',  //movil2
-   '123456', //'contrasenna de la bd', //ProgramacionMovil2@
+    'compras', //'nombre de la base de datos',  //compras
+   'compras', //'el usaurio de la db',  
+   'Compras1@', //'contrasenna de la bd', 
     {
-        host: 'localhost', //si esta en esta pc la base sino poner la ip de la maquina en la que este '192.168.50.192',
+        host: 'desofiw.xyz', 
         dialect: 'mysql',
-        port: 3306, //puerto del mysql
+        port: 4306, 
 
     }
 );

@@ -4,7 +4,7 @@ const ModeloProveedores = require('../modelos/ModeloProveedores');
 
 
 ///////////////////// Funcion listar /////////////////////////////
-exports.Listar = async (req,res)=>{  
+exports.Listar = async (req,res)=>{   //Esta es listar o guardar
   var msj = {
     mensaje: '' 
   }
@@ -25,3 +25,91 @@ exports.Listar = async (req,res)=>{
 
 
   ///////////////////// Fin Funcion listar /////////////////////////////
+
+
+
+////////////////////// Inicio Funcion Guardar ////////////////////////////
+  exports.Guardar = async (req, res) => {
+    const validaciones = validationResult(req);
+
+    
+        const {nombre, rtn, direccion, fechahora, correo} = req.body;
+        const msj = {
+                mensaje: " "  
+        };
+    
+    
+        if(validaciones.errors.length > 0 ) 
+        {
+          validaciones.errors.forEach(element => {
+            msj.mensaje+=element.msg + '. ';
+    
+          });
+        }
+        else{
+              try{  
+                    const buscarNombre = Usuario.findOne({ //que busque uno
+                        where:{
+                            nombre:nombre
+                        }
+                    });
+                    if(buscarNombre){  //validacion que ya existe 
+                        msj.mensaje += 'El Nombre ya existe ';
+                    }
+                    else{
+                         const buscarCorreo = Usuario.findOne({
+                             where: {
+                                 correo
+                             }
+                         });
+                         if(buscarCorreo){
+                            msj.mensaje += 'El correo ya existe.  ';
+                        } 
+                        else{
+                            const buscarRTN = Empleado.findOne({
+                                    where:{
+                                        rtn: rtn
+                                    }
+                            });
+                            if(!buscarRTN)
+                            {
+                                msj.mensaje += 'El rtn de proveedor no existe.  ';
+                            }
+                            else{
+                                msj.mensaje ='Peticion procesada con exito';
+                            }
+                        }        
+                    }
+                
+               // } 
+        
+                //} 
+
+//>>
+
+                  if(!rtn){
+                    await ModeloProveedores.create({
+                      nombre: nombre
+                    });
+                  }
+                   else{
+                     await ModeloProveedores.create({
+                        nombre: nombre,
+                       rtn: rtn,
+                       direccion: direccion,
+                       fechahora: fechahora,
+                       correo: correo
+                     
+                     });
+                   }
+                   msj.mensaje = 'Peticion ejecutada correctamente';
+                   } catch (error) {
+                    msj.mensaje= 'Error al guardar los datos';
+                  }   
+        }
+        
+    res.json(msj); 
+    };
+    
+
+    //////////////////////////// Fin Funcion Guardar //////////////////
