@@ -11,12 +11,23 @@ exports.Inicio = (req, res) =>{
     res.json(msj);
 };
 
+exports.Integrantes = (req, res) =>{
+    
+    const msj ={
+        Integrantes: "Oscar Martinez y Maury Zavala",
+        Seccion: "1301",
+        Clase: "Programacion Movil II",
+        
+    };
+    res.json(msj);
+};
+
 exports.detallecompras = (req, res) =>{
     const listaModulos =[
-        {modulo: "Listar", ruta: "/api/detallecompra/listar"},
-        {modulo: "Guardar", ruta: "/api/detallecompra/guardar"},
-        {modulo: "Eliminar", ruta: "/api/detallecompra/eliminar"},
-        {modulo: "Modificar", ruta: "/api/detallecompra/modificar"},
+        {modulo: "Listar", ruta: "/api/detallecompras/listar"},
+        {modulo: "Guardar", ruta: "/api/detallecompras/guardar"},
+        {modulo: "Eliminar", ruta: "/api/detallecompras/eliminar"},
+        {modulo: "Modificar", ruta: "/api/detallecompras/modificar"},
         
     ];
     const msj ={
