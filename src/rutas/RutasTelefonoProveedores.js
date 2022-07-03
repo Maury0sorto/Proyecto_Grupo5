@@ -1,9 +1,13 @@
 const { Router } = require('express'); 
 const { body, query } = require('express-validator');
-const ControladorTelefonoProveedores = require('../controladores/ControladorTelefonoProveedores') ;
+const ControladorTelefono = require('../controladores/ControladorTelefonoProveedores') ;
 const rutas = Router(); 
+
+
+rutas.get('/', ControladorTelefono.Inicio);
+
 ///////////////////////// Listar /////////////////////////
-rutas.get('/listar', ControladorTelefonoProveedores.Listar);
+rutas.get('/listar', ControladorTelefono.Listar);
 ///////////////////////// Fin Listar /////////////////////////
 
 
@@ -17,7 +21,7 @@ body('telefono').notEmpty().withMessage('Debe escribir el telefono del empleado'
 body('idproveedores').notEmpty().withMessage('Debe escribir el del proveedor') 
 .isLength({min: 1}).withMessage('El id de proveedor debe tener como minimo 1 caracteres'), 
 
-ControladorTelefonoProveedores.Guardar);
+ControladorTelefono.Guardar);
 ////////////////////// Fin Guardar //////////////////////////
 
 module.exports = rutas;

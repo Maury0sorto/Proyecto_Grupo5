@@ -1,9 +1,94 @@
 const {body, validationResult, query } = require ('express-validator');
 const ModeloTelefonoProveedores = require('../modelos/ModeloTelefonoProveedores'); 
+const msjRes = require('../../src/componentes/mensaje');
 
 
 const  Idpro = require('../modelos/ModeloTelefonoProveedores'); 
 const  Tel = require('../modelos/ModeloTelefonoProveedores'); 
+
+
+///////////////////////////////////////////////////////////////////////////
+function validacion (req){
+  const validaciones = validationResult(req);
+  var errores = [];
+  var error = {
+      mensaje: '',
+      parametro: '',
+  };
+  var msj = {
+      estado: 'correcto',
+      mensaje: 'Peticion ejecutada correctamente',
+      datos: '',
+      errores: ''
+  };
+  
+  if(validaciones.errors.length > 0)
+  {
+      validaciones.errors.forEach(element => {
+          error.mensaje = element.msg;
+          error.parametro = element.param;
+          errores.push(error);
+      });
+      msj.estado = 'precaucion';
+      msj.mensaje = 'La peticion no se ejecuto';
+      msj.errores = errores;
+      
+  }
+  return msj;
+};
+///////////////////////////////////////////////////////////////////
+
+exports.Inicio = async (req, res)=>{
+  var msj = validacion(req);
+  const listaModulos = 
+  [
+    
+      { 
+        modulo: "Telefono", 
+        rutas:[
+          {
+            ruta:"api/telefono",
+            metodo:"get",
+            parametros:"",
+            descripcion: "Inicio del módulo de Proveedores"
+          },
+          {
+            ruta:"api/telefono/listar",
+            metodo:"get",
+            parametros:"",
+            descripcion: "Lista todos los Proveedores"
+          },
+          {
+            ruta:"api/telefono/guardar",
+            metodo:"post",
+            parametros:{
+              nombre: "Nombre de proveedor. Obligatorio",
+              rtn: "RTN de el proveedor. Obligatorio",
+              correo: "Correo del proveedor. Obligatorio",
+
+            },
+            descripcion: "Guardar todos los datos de los Proveedores"
+          },
+        ],
+      }
+
+  ];
+  const datos = {
+    api: "API-PROYECTO GRUPO 5",
+    descripcion: "Interfaz de progamación de compras",
+    propiedad: "Grupo5",
+    desarrollador: "Mauricio Zavala Osorto",
+    colaboradores: "",
+    fecha: "28/08/2000",
+    listaModulos
+};
+msj.datos=datos;
+    msjRes(res, 200, msj);
+};
+
+
+
+
 
 ///////////////////// Funcion listar /////////////////////////////
 exports.Listar = async (req,res)=>{  

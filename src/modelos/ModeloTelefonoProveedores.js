@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');  
 const db = require('../configuraciones/db');
-const TelefonoProveedores = db.define(
+const Proveedores = require('./ModeloProveedores');//
+const Telefono = db.define(
 ////// Modelo De telefono de proveedores Mauricio  Zavala ///////////
     'telefonoproveedores',
     {
@@ -19,13 +20,14 @@ const TelefonoProveedores = db.define(
         telefono:{
             type: DataTypes.STRING(45),  
             allowNull: false,
-        },
-
-        idproveedores:{
-            type: DataTypes.INTEGER, 
-            foreignKey: true,
-            allowNull: false,
         }
+        //,
+
+       // idproveedores:{
+          //  type: DataTypes.INTEGER, 
+          //  foreignKey: true,
+         //   allowNull: false,
+      //  }
     },
     {
         tableName: 'telefono_proveedores',
@@ -33,4 +35,15 @@ const TelefonoProveedores = db.define(
     }
 
  );
- module.exports = TelefonoProveedores;
+
+ Proveedores.hasMany(Proveedores,{
+    foreignKey: 'idproveedores',
+    otherKey: 'id'
+ });
+
+ Telefono.belongsTo(Proveedores,{
+    foreignKey: 'idproveedores',
+    otherKey: 'id'
+ });
+
+ module.exports = Telefono;

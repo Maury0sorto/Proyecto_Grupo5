@@ -4,10 +4,11 @@ const {body, validationResult } = require('express-validator');
 exports.Inicio = (req, res) =>{
     const listaModulos =[
         {modulo: "Proveedores", ruta: "/api/proveedores"},
-        {modulo: "TelefonoProveedores", ruta: "/api/telefonoproveedores"},
+        //{"Listar Proveedores", ruta: "/api/listarproveedores"},
+        {modulo: "Telefono", ruta: "/api/telefono"},
     ];
     const msj ={
-        Nombre: "El mejor grupo de la historia mundial",
+        Nombre: "API Grupo5 Compras",
         Seccion: "1301",
         Clase: "Programacion Movil II",
         listaModulos
@@ -34,3 +35,37 @@ exports.detallecompras = (req, res) =>{
     };
     res.json(msj);
 };
+
+////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+///// Prueba Post //////////////
+exports.EjemploPost = (req, res) => {
+    console.log(req.body); 
+    const{ prueba } = req.body;
+
+    const msj = {
+        mensaje: "Ninguno"  
+    };
+
+
+    if(!prueba) 
+    {
+
+    msj.mensaje = 'Debe escribir todos los campos ';
+
+    }
+    else{
+
+    msj.mensaje = 'datos ingresados con exito';
+    }
+    res.json(msj); 
+
+    };
+
+/////////////////////////////////

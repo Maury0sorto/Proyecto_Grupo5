@@ -3,6 +3,8 @@ const { body, query } = require('express-validator');
 const ControladorProveedores = require('../controladores/ControladorProveedores') ;
 const rutas = Router(); 
 
+
+rutas.get('/', ControladorProveedores.Inicio);
 ///////////////////////// Listar /////////////////////////
 rutas.get('/listar', ControladorProveedores.Listar);
 ///////////////////////// Fin Listar /////////////////////////

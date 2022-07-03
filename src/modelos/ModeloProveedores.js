@@ -1,15 +1,19 @@
 const { DataTypes } = require('sequelize');  
 const db = require('../configuraciones/db');
 const Proveedores = db.define(
+
+
 ////// Modelo De proveedores Mauricio  Zavala ///////////
     'proveedores',
     {
-        idproveedores: {
-            type: DataTypes.INTEGER,
-            primarykey: true,
-            autoIcrement: true,
-            allowNull:false,
-        },
+      id:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+        field: 'IdProveedor',
+      },
+
         nombre: {
             type: DataTypes.STRING(45),
             allowNull: false,

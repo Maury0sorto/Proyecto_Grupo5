@@ -4,7 +4,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 
 const app = express();  
-app.set('port',3001); 
+app.set('port',4306); 
 app.use(morgan('dev'));  
 
 
@@ -13,9 +13,10 @@ app.use(express.json());
 
 
 app.use('/api/', require('./rutas'));   
+app.use('/api/', require('./rutas/index'));
 app.use('/api/proveedores', require('./rutas/RutasProveedores'));     
-app.use('/api/TelefonoProveedores', require('./rutas/RutasTelefonoProveedores'));     
-//app.use('/api/', require('./rutas/index'));
+app.use('/api/telefono', require('./rutas/RutasTelefonoProveedores'));     
+
 
 
 app.listen(app.get('port'), () => {  
