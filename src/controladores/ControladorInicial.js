@@ -1,5 +1,5 @@
 const {body, validationResult } = require('express-validator');
-<<<<<<< HEAD
+
 
 
 exports.Inicio = (req, res) =>{
@@ -8,11 +8,6 @@ exports.Inicio = (req, res) =>{
         //{"Listar Proveedores", ruta: "/api/listarproveedores"},
         {modulo: "Telefono", ruta: "/api/telefono"},
     ];
-=======
-
-exports.Inicio = (req, res) =>{
-    
->>>>>>> 222e02d13800516b496314ac574d5321ce5c8ed1
     const msj ={
         Nombre: "API Grupo5 Compras",
         Seccion: "1301",
@@ -23,7 +18,6 @@ exports.Inicio = (req, res) =>{
     res.json(msj);
 };
 
-<<<<<<< HEAD
 
 
 
@@ -34,25 +28,6 @@ exports.detallecompras = (req, res) =>{
         {modulo: "Guardar", ruta: "/api/detallecompra/guardar"},
         {modulo: "Eliminar", ruta: "/api/detallecompra/eliminar"},
         {modulo: "Modificar", ruta: "/api/detallecompra/modificar"},
-=======
-exports.Integrantes = (req, res) =>{
-    
-    const msj ={
-        Integrantes: "Oscar Martinez y Maury Zavala",
-        Seccion: "1301",
-        Clase: "Programacion Movil II",
-        
-    };
-    res.json(msj);
-};
-
-exports.detallecompras = (req, res) =>{
-    const listaModulos =[
-        {modulo: "Listar", ruta: "/api/detallecompras/listar"},
-        {modulo: "Guardar", ruta: "/api/detallecompras/guardar"},
-        {modulo: "Eliminar", ruta: "/api/detallecompras/eliminar"},
-        {modulo: "Modificar", ruta: "/api/detallecompras/modificar"},
->>>>>>> 222e02d13800516b496314ac574d5321ce5c8ed1
         
     ];
     const msj ={
@@ -63,7 +38,6 @@ exports.detallecompras = (req, res) =>{
 };
 
 ////////////////////////////////////////////////////////////////
-
 
 
 
