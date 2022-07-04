@@ -27,12 +27,14 @@ const Compras = db.define(
             type: DataTypes.INTEGER, 
             foreignKey: true,
             allowNull: false,
+            field: "idregistro",
         }  ,
 
         tipopago: {
             type: DataTypes.ENUM('CONTADO','CREDITO'),
             allowNull: true,
-            defaultValue: 'CONTADO'
+            defaultValue: 'CONTADO',
+            field: "TipoPago",
         },
 
         fechahora:{
@@ -44,42 +46,50 @@ const Compras = db.define(
             type: DataTypes.INTEGER, 
             foreignKey: true,
             allowNull: false,
+            field: "NumeroEstacion",
         },
 
         descuentos:{
             type: DataTypes.DOUBLE,  
             allowNull: true, 
-            defaultValue: 0
+            defaultValue: 0,
+            field: "Descuentos",
         },
         exento:{
             type: DataTypes.DOUBLE,  
-            allowNull: false 
+            allowNull: false,
+            field: "Exento",
             
         },
         impuesto15:{
             type: DataTypes.DOUBLE,  
-            allowNull: false 
+            allowNull: false,
+            field: "Impuesto15",
             
         },
         impuesto18:{
             type: DataTypes.DOUBLE,  
-            allowNull: false 
+            allowNull: false ,
+            field: "Impuesto18",
             
         },
         exonerado:{
             type: DataTypes.DOUBLE,  
-            allowNull: false 
+            allowNull: false,
+            field: "Exonerado",
             
         },
         total:{
             type: DataTypes.DOUBLE,  
-            allowNull: false
+            allowNull: false,
+            field: "Total",
            
         },
         anular:{
             type: DataTypes.BOOLEAN,
             allowNull: true,
-            defaultValue: 0
+            defaultValue: 0,
+            field: "Anular",
         },
 
     },
