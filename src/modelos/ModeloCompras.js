@@ -5,7 +5,7 @@ const Compras = db.define(
     {
         id: {
             type: DataTypes.INTEGER,
-            primarykey: true,
+            primaryKey: true,
             autoIcrement: true,
             allowNull:false,
         },

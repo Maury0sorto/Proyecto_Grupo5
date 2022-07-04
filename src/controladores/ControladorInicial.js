@@ -22,20 +22,20 @@ exports.Inicio = (req, res) =>{
 
 
 ///////////////////////////////////////////////////////////////
-exports.detallecompras = (req, res) =>{
-    const listaModulosCompra =[
-        {modulo: "Listar", ruta: "/api/detallecompra/listar"},
-        {modulo: "Guardar", ruta: "/api/detallecompra/guardar"},
-        {modulo: "Eliminar", ruta: "/api/detallecompra/eliminar"},
-        {modulo: "Modificar", ruta: "/api/detallecompra/modificar"},
+// exports.detallecompras = (req, res) =>{
+//     const listaModulosCompra =[
+//         {modulo: "Listar", ruta: "/api/detallecompra/listar"},
+//         {modulo: "Guardar", ruta: "/api/detallecompra/guardar"},
+//         {modulo: "Eliminar", ruta: "/api/detallecompra/eliminar"},
+//         {modulo: "Modificar", ruta: "/api/detallecompra/modificar"},
         
-    ];
-    const msj ={
+//     ];
+//     const msj ={
         
-        listaModulosCompra
-    };
-    res.json(msj);
-};
+//         listaModulosCompra
+//     };
+//     res.json(msj);
+// };
 
 ////////////////////////////////////////////////////////////////
 
