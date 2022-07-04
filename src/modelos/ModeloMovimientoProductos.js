@@ -16,7 +16,7 @@ const MovimientoProductos = db.define(
             allowNull: false,
         },
         tipo:{
-            type: DataTypes.ENUM(/*AQUI NO SE CUALES SON LOS VALORES EN LA BASE DE DATOS*/),
+            type: DataTypes.ENUM(/*AQUI NO SE CUALES SON LOS VALORES EN LA BASE DE DATOS (ASIGNAR)*/),  
             allowNull: false, 
             defaultValue: /*'AQUI TAMPOCO SE :)'*/ ''
         },
