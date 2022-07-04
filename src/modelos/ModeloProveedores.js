@@ -11,23 +11,23 @@ const Proveedores = db.define(
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-        field: 'IdProveedor',
+     //   field: 'IdProveedor',
       },
 
         nombre: {
             type: DataTypes.STRING(45),
             allowNull: false,
-            field: "NombreProveedor",
+        //    field: "NombreProveedor",
         },
         rtn:{
             type: DataTypes.STRING(45),
             allowNull: false, 
-            field: "RtnProveedor",
+         //   field: "RtnProveedor",
         },
         direccion:{
             type: DataTypes.TEXT,
             allowNull: true,
-            field: "DireccionProveedor",
+        //    field: "DireccionProveedor",
         },
         fechahora:{
             type: DataTypes.DATE, 
@@ -38,7 +38,7 @@ const Proveedores = db.define(
             type: DataTypes.STRING(250),
             allowNull: true,
             defaultValue: false,
-            field: "CorreoProveedor",
+         //   field: "CorreoProveedor",
         }
     },
 

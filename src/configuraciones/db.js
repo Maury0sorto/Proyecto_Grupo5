@@ -1,9 +1,10 @@
 const sequelize = require('sequelize');
 const db = new sequelize(
 
-    'compras', //'nombre de la base de datos',  //compras
-   'compras', //'el usaurio de la db',  
-   'Compras1@', //'contrasenna de la bd', 
+   // 'Compras', //'nombre de la base de datos',  //compras
+   'sigresdesarrollo',
+   'compras', 
+   'Compras1@', 
     {
         host: 'desofiw.xyz', 
         dialect: 'mysql',
