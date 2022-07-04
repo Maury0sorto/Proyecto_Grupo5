@@ -5,18 +5,22 @@ const Compras = db.define(
     {
         id: {
             type: DataTypes.INTEGER,
-            primarykey: true,
+            primaryKey: true,
             autoIcrement: true,
             allowNull:false,
+            field: "IdCompras",
         },
         numerofactura:{
             type: DataTypes.STRING(45),
             allowNull:false,
+            field: "NumeroFactura",
+            
         },
         idproveedores:{
             type: DataTypes.INTEGER, 
             foreignKey: true,
             allowNull: false,
+            field: "IdProveedores",
         },
 
         idregistrousuario:{
