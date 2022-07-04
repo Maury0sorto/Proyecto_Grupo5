@@ -6,7 +6,7 @@ const MovimientoProductos = db.define(
     {
         id: {
             type: DataTypes.INTEGER,
-            primarykey: true,
+            primaryKey: true,
             autoIcrement: true,
             allowNull:false,
             field: 'Id del movimiento',
@@ -18,7 +18,7 @@ const MovimientoProductos = db.define(
             field: 'Fecha del movimiento',
         },
         tipo:{
-            type: DataTypes.ENUM(/*AQUI NO SE CUALES SON LOS VALORES EN LA BASE DE DATOS (ASIGNAR)*/),  
+            type: DataTypes.ENUM(/*AQUI NO SE CUALES SON LOS VALORES EN LA BASE DE DATOS (ASIGNAR)*/''),  
             allowNull: false, 
             defaultValue: /*'AQUI TAMPOCO SE :)'*/ '',
             field: 'tipo de movimiento',
