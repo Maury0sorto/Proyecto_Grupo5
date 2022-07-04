@@ -5,18 +5,18 @@ const Productos = db.define(
     'productos',
     {
         codigo: {
-            type: DataTypes.VARCHAR(15),
+            type: DataTypes.STRING(15),
             primarykey: true,
             autoIcrement: true,
             /*defaultValue:  '' No se si el codigo debe ser autoincremental o por default*/
             allowNull:false,
         },
         nombre: {
-            type: DataTypes.VARCHAR(40),
+            type: DataTypes.STRING(40),
             allowNull: false,
         },
         descripcion: {
-            type: DataTypes.TEXT,  
+            type: DataTypes.STRING(250),  
             allowNull: false, 
         },
         tipo_producto:{
@@ -42,21 +42,23 @@ const Productos = db.define(
             allowNull: false, 
         },
         exento:{
-            type: DataTypes.TINYINT(1), 
+            type: DataTypes.BOOLEAN, 
             allowNull: false, 
         },
-        imagen:{
-            type: DataTypes.LONGBLOB,
-            allowNull:false,
-        },
+        // imagen:{
+        //     type: DataTypes.LONGBLOB,
+        //     allowNull:false,
+        //     defaultValue: false,
+        // },
         habilitado:{
-            type: DataTypes.TINYINT, 
+            type: DataTypes.BOOLEAN, 
             allowNull: false, 
             /*defaultValue:  '' declarar el estado del producto*/
         },
         tipo2:{
-            type: DataTypes.ENUM(), 
+            type: DataTypes.ENUM(''), 
             allowNull: false, 
+            defaultValue:'',
         },
         orden:{
             type: DataTypes.INTEGER, 
@@ -74,12 +76,12 @@ const Productos = db.define(
             type: DataTypes.DOUBLE, 
             allowNull: false, 
         } ,
-        nombre_imagen:{
-            type: DataTypes.VARCHAR(250), 
-            allowNull: false, 
-        } ,
+        // nombre_imagen:{
+        //     type: DataTypes.STRING(250), 
+        //     allowNull: false, 
+        // } ,
         id_principal:{
-            type: DataTypes.VARCHAR(15), 
+            type: DataTypes.STRING(15), 
             allowNull: false, 
         } ,
         cantidad_principal:{
@@ -91,7 +93,7 @@ const Productos = db.define(
             allowNull: false, 
         } ,
         movimiento:{
-            type: DataTypes.VARCHAR(45), 
+            type: DataTypes.STRING(45), 
             allowNull: false, 
         } ,
     },
