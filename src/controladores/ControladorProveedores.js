@@ -189,7 +189,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
         }
        
        
-        msj.mensaje = 'Probando';
+        msj.mensaje = 'Datos Guardados Exitosamente';
 
     res.json(msj); 
     };

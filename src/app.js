@@ -12,12 +12,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 
-app.use('/api/', require('C:/Users/Oscar/Documents/GitHub/Proyecto_Grupo5/src/rutas'));      
-app.use('/api/', require('C:/Users/Oscar/Documents/GitHub/Proyecto_Grupo5/src/rutas/index'));
-
-app.use('/api/proveedores', require('C:/Users/Oscar/Documents/GitHub/Proyecto_Grupo5/src/rutas/RutasProveedores'));     
-app.use('/api/telefono', require('C:/Users/Oscar/Documents/GitHub/Proyecto_Grupo5/src/rutas/RutasTelefonoProveedores'));     
-app.use('/api/detallecompra', require('C:/Users/Oscar/Documents/GitHub/Proyecto_Grupo5/src/rutas/RutasDetalleCompra'));     
+app.use('/api/', require('./rutas'));   
+app.use('/api/', require('./rutas/index'));
+app.use('/api/proveedores', require('./rutas/RutasProveedores'));     
+app.use('/api/telefono', require('./rutas/RutasTelefonoProveedores'));     
+app.use('/api/detallecompra', require('./rutas/RutasDetalleCompra'));     
 
 
 
