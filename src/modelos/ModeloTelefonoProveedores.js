@@ -10,24 +10,21 @@ const Telefono = db.define(
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            field: "IdTelefonoProveedor"
         },
 
         contacto: {
             type: DataTypes.STRING(45),  
             allowNull: false,
+            field: "ContactoTelefonoProveedor",
         },
 
         telefono:{
             type: DataTypes.STRING(45),  
             allowNull: false,
+            field: "TelefonoProveedor",
         }
-        //,
-
-       // idproveedores:{
-          //  type: DataTypes.INTEGER, 
-          //  foreignKey: true,
-         //   allowNull: false,
-      //  }
+      
     },
     {
         tableName: 'telefono_proveedores',

@@ -17,14 +17,17 @@ const Proveedores = db.define(
         nombre: {
             type: DataTypes.STRING(45),
             allowNull: false,
+            field: "NombreProveedor",
         },
         rtn:{
             type: DataTypes.STRING(45),
             allowNull: false, 
+            field: "RtnProveedor",
         },
         direccion:{
             type: DataTypes.TEXT,
             allowNull: true,
+            field: "DireccionProveedor",
         },
         fechahora:{
             type: DataTypes.DATE, 
@@ -34,7 +37,8 @@ const Proveedores = db.define(
         correo:{  //hacer validacion de correo 
             type: DataTypes.STRING(250),
             allowNull: true,
-            defaultValue: false
+            defaultValue: false,
+            field: "CorreoProveedor",
         }
     },
 
