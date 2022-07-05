@@ -64,11 +64,21 @@ exports.Inicio = async (req, res)=>{
             metodo:"post",
             parametros:{
               nombre: "Nombre de proveedor. Obligatorio",
-              rtn: "RTN de el proveedor. Obligatorio",
-              correo: "Correo del proveedor. Obligatorio",
+              rtn: "RTN de el proveedor. ",
+              correo: "Correo del proveedor. ",
 
             },
             descripcion: "Guardar todos los datos de los Proveedores"
+          },
+          {
+            ruta:"api/proveedores/eliminar",
+            metodo:"delete",
+            parametros:{
+              id: "id  de proveedor. Obligatorio",
+             
+            },
+            descripcion: "Eliminar un proveedor existente"
+
           },
         ],
       }
@@ -201,8 +211,8 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
       const validaciones = validationResult(req);
       console.log(validaciones.errors[0]);
       console.log(req.body);
-     // const { nombre, rtn } = req.body;
-      const { nombre } = req.body;
+      const { nombre, rtn } = req.body;
+     // const { nombre } = req.body;
       var msj = {
           mensaje: ''
       };

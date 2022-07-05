@@ -10,18 +10,23 @@ rutas.get('/', ControladorTelefono.Inicio);
 rutas.get('/listar', ControladorTelefono.Listar);
 ///////////////////////// Fin Listar /////////////////////////
 
+/////////////////////// Guardar  //////////////////////////////////
+rutas.post('/guardar' ,
+body('Telefono').notEmpty().withMessage('Debe escribir el numero de telefono del proveedor') 
+.isLength({min: 8}).withMessage('Debe ingresar un telefono con minimo 8 caracteres'), 
 
-rutas.post(' /guardar' ,
-body('contacto').notEmpty().withMessage('Debe escribir el nombre del proveedor') 
-.isLength({min: 8}).withMessage('Debe ingresar un nombre de proveedor con minimo 8 caracteres'), 
-
-body('telefono').notEmpty().withMessage('Debe escribir el telefono del empleado') 
-.isLength({min: 8}).withMessage('Debe ingresar un telefono de proveedor con minimo 8 caracteres'), 
-
-body('idproveedores').notEmpty().withMessage('Debe escribir el del proveedor') 
-.isLength({min: 1}).withMessage('El id de proveedor debe tener como minimo 1 caracteres'), 
+body('Id').notEmpty().withMessage('Debe escribir id del Proveedor') 
+.isInt().withMessage('El id del Proveedor debe ser un numero entero'),
 
 ControladorTelefono.Guardar);
 ////////////////////// Fin Guardar //////////////////////////
+
+////////////////// Eliminar ////////////////////////////////////
+rutas.delete('/eliminar',
+    query('Telefono').notEmpty().withMessage('Debe escribir el numero de telefono del Proveedor')
+    .isLength({min: 8}).withMessage('Debe ingresar un telefono con minimo 8 caracteres'), 
+    ControladorTelefono.Eliminar);
+
+/////////////////// Fin Eliminar ///////////////////////
 
 module.exports = rutas;

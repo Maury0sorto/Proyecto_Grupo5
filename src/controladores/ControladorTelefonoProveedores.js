@@ -63,11 +63,19 @@ exports.Inicio = async (req, res)=>{
             metodo:"post",
             parametros:{
               nombre: "Nombre de proveedor. Obligatorio",
-              rtn: "RTN de el proveedor. Obligatorio",
-              correo: "Correo del proveedor. Obligatorio",
-
+             
             },
             descripcion: "Guardar todos los datos de los Proveedores"
+          },
+          {
+            ruta:"api/telefono/eliminar",
+            metodo:"delete",
+            parametros:{
+              Telefono: "Numero de telefono de proveedor. Obligatorio",
+             
+            },
+            descripcion: "Eliminar un numero de telefono de proveedor"
+
           },
         ],
       }
@@ -115,7 +123,7 @@ exports.Listar = async (req,res)=>{
 
 
   ////////////////////// Inicio Funcion Guardar ////////////////////////////
-  exports.Guardar = async (req, res) => {
+  /*exports.Guardar = async (req, res) => {
     const validaciones = validationResult(req);
 
     
@@ -159,13 +167,13 @@ exports.Listar = async (req,res)=>{
                             });
                             if(!buscaridproveedores)
                             {
-                                msj.mensaje += 'El id de proveedor no existe.  ';
-                            }
-                            else{
-                                msj.mensaje ='Peticion procesada con exito';
-                            }
-                        }        
-                    }
+                                msj.mensaje += 'El id de proveedor no existe.  '; */
+                       //     }
+                        //    else{
+                     //           msj.mensaje ='Peticion procesada con exito';
+                      //      }
+                   //     }        
+                //    }
                 
                // } 
         
@@ -173,29 +181,121 @@ exports.Listar = async (req,res)=>{
 
 //>>
 
-                  if(!idproveedores){
-                    await ModeloTelefonoProveedores.create({
-                      idproveedores: idproveedores
-                    });
-                  }
-                   else{
-                     await ModeloTelefonoProveedores.create({
+              //    if(!idproveedores){
+               //     await ModeloTelefonoProveedores.create({
+                //      idproveedores: idproveedores
+               //     });
+              //    }
+               //    else{
+                 //    await ModeloTelefonoProveedores.create({
                        
-                       contacto: contacto,
-                       telefono: telefono,
-                       idproveedores: idproveedores
+                   //    contacto: contacto,
+                 //      telefono: telefono,
+                   //    idproveedores: idproveedores
                   
                      
-                     });
-                   }
-                   msj.mensaje = 'Peticion ejecutada correctamente';
-                   } catch (error) {
-                    msj.mensaje= 'Error al guardar los datos';
-                  }   
-        }
+                   //  });
+                  // }
+                 //  msj.mensaje = 'Peticion ejecutada correctamente';
+                //   } catch (error) {
+                //    msj.mensaje= 'Error al guardar los datos';
+               //   }   
+      //  }
         
-    res.json(msj); 
-    };
+    //res.json(msj); 
+    //}; //
     
 
     //////////////////////////// Fin Funcion Guardar //////////////////
+
+    
+    exports.Guardar = async(req, res) => {
+      const validaciones = validationResult(req);
+      console.log(validaciones.errors[0]);
+      console.log(req.body);
+      const { telefono, idproveedores } = req.body;
+     // const { nombre } = req.body;
+      var msj = {
+          mensaje: ''
+      };
+      if (validaciones.errors.length > 0) {
+          validaciones.errors.forEach(element => {
+              msj.mensaje += element.msg + ' . ';
+  
+          });
+  
+      } else {
+          try {
+              if (!telefono) {
+                  await ModeloTelefonoProveedores.create({
+                    Telefono: telefono,
+  
+                  });
+              } else {
+                 await ModeloTelefonoProveedores.create({
+                  Telefono: telefono,
+                     Id: idproveedores
+                 });
+              }
+  
+              msj.mensaje = 'Registro Guardado correctamente'; //
+  
+          } catch (error) {
+              console.error(error);
+              msj.mensaje = 'Error Al Guardar los Datos ';
+          }
+  
+      }
+      res.json(msj);
+  };
+   //////////////////////////// Fin Funcion Guardar //////////////////
+
+   /////////////////////////  Eliminar ////////////////////////////////////////
+
+   exports.Eliminar = async(req, res) => {
+    const validaciones = validationResult(req);
+    console.log(validaciones.errors[0]);
+    console.log(req.body);
+    const { idproveedores } = req.query;
+    const msj = {
+
+        mensaje: ""
+
+    };
+
+    if (validaciones.errors.length > 0) {
+        validaciones.errors.forEach(element => {
+            msj.mensaje += element.msg + ' . ';
+
+        });
+
+    } else {
+        try {
+            var buscarTelProveedor = await ModeloTelefonoProveedores.findOne({
+                where: {
+                  Telefono: telefono
+                }
+
+            });
+            if (!buscarTelProveedor) {
+                msj.mensaje = 'No Existe el telefono Del Proveedor';
+            } else {
+                await ModeloProveedores.destroy({
+                    where: {
+                     Telefono: telefono
+                    }
+
+                });
+
+                msj.mensaje = 'Registro Eliminado Correctamente';
+            }
+        } catch (error) {
+            console.error(error);
+            msj.mensaje = 'Error Al Eliminar los Datos ';
+        }
+
+    }
+    res.json(msj);
+};
+
+  /////////////////////////  Fin Eliminar ////////////////////////////////////////
