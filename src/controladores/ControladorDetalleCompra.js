@@ -87,7 +87,7 @@ exports.Listar = async (req,res)=>{
   try{
 
     const lista = await ModeloDetalleCompras.findAll(); 
-    console.log(JSON.stringfy(lista, null, 2));  
+    console.log(JSON.stringfy(lista));  
     msj.mensaje = 'Peticion procesada correctamente ';
      
     res.json(lista); 
@@ -97,7 +97,7 @@ exports.Listar = async (req,res)=>{
        msj.mensaje = 'Ocurrio un error';
        res.json(msj);  
   }   
-    }
+};
 
 
   ///////////////////// Fin Funcion listar /////////////////////////////
