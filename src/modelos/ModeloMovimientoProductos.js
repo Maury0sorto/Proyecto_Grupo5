@@ -54,7 +54,7 @@ const MovimientoProductos = db.define(
 
     {
         tableName: 'movimiento_productos',
-        timestamps: 'false',
+        timestamps: false,
     }
 
     );  

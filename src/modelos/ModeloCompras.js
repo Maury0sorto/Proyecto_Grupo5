@@ -80,7 +80,7 @@ const Compras = db.define(
     },
     {
         tableName: 'compras',
-        timestamps: 'false',
+        timestamps: false,
     }
     );  
 

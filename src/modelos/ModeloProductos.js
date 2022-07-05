@@ -120,7 +120,7 @@ const Productos = db.define(
 
     {
         tableName: 'productos',
-        timestamps: 'false',
+        timestamps: false,
     }
 
     );

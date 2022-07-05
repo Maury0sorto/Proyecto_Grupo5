@@ -48,7 +48,7 @@ const DetalleCompras = db.define(
 
     {
         tableName: 'detalle_compras',
-        timestamps: 'false',
+        timestamps: false,
     }
 
     );  
