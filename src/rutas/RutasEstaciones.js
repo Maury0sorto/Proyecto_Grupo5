@@ -26,4 +26,12 @@ body('nombre').notEmpty().withMessage('Debe escribir el nombre de la estacion').
 
 ControladorEstaciones.Guardar);
 
+//////////////////////////////////////////////////////////////////////
+
+
+rutas.delete('/eliminar', 
+query('NumeroEstacion').notEmpty().withMessage('Debe escribir el id de usuario')
+.isInt().withMessage('El id de numero de estacion debe ser un numero entero'),
+ControladorEstaciones.Eliminar);
+
 module.exports = rutas;

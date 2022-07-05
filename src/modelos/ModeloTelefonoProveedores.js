@@ -26,7 +26,13 @@ const Telefono = db.define(
             allowNull: true ,
             defaultValue: false,
          //   field: "TelefonoProveedor",
-        }
+        },
+
+      /*  proveedores_id:{
+            type: DataTypes.INTEGER,  
+            allowNull: true ,
+            defaultValue: false,
+        } */
       
     },
     {

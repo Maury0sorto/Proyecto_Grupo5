@@ -1,5 +1,6 @@
 const {body, validationResult, query } = require ('express-validator');
 const ModeloEstaciones = require('../modelos/ModeloEstaciones');
+const Estaciones = require('../modelos/ModeloEstaciones');
 const msjRes = require('../../src/componentes/mensaje');
 
 ///////////////////////////////////////////////////////////////////////////
@@ -62,7 +63,7 @@ function validacion (req){
                 
   
               },
-              descripcion: "Guardar todos los datos de los Proveedores"
+              descripcion: "Guardar todos los datos de las Estaciones"
             },
             {
               ruta:"api/estaciones/eliminar",
@@ -156,3 +157,44 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
         }
         res.json(msj);
     };
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    exports.Eliminar = async (req, res) =>{
+      var msj = validacion(req);
+      if (msj.errores.length > 0){
+          msjRes(res, 200, msj);
+      }
+      else{
+          try {
+              const { id } = req.query;
+              var buscarEstacion = await Estaciones.findOne({
+                  where:{
+                    NumeroEstacion: NumeroEstacion
+                  }
+              });
+              if(!buscarEstacion){
+                  msj.estado = 'precaucion';
+                  msj.mensaje = 'La peticion se ejecuto correctamente';
+                  msj.errores={
+                      mensaje: 'El NumeroEstacion de la estacion  no existe',
+                      parametro: 'NumeroEstacion',
+                  };
+              }
+              else{
+                  await Estaciones.destroy({
+                      where: {
+                        NumeroEstacion: NumeroEstacion
+                      }
+                  });
+              }
+              msjRes(res, 200, msj);
+          } catch (error) {
+              msj.estado = 'error';
+              msj.mensaje = 'La peticion no se ejecuto';
+              msj.errores = error;
+              msjRes(res, 500, msj);
+          }
+      }
+  };

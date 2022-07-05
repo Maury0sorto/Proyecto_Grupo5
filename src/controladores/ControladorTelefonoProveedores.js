@@ -50,13 +50,13 @@ exports.Inicio = async (req, res)=>{
             ruta:"api/telefono",
             metodo:"get",
             parametros:"",
-            descripcion: "Inicio del módulo de Proveedores"
+            descripcion: "Inicio del módulo de Telefono de los Proveedores"
           },
           {
             ruta:"api/telefono/listar",
             metodo:"get",
             parametros:"",
-            descripcion: "Lista todos los Proveedores"
+            descripcion: "Lista todos los Teleonos de Proveedores"
           },
           {
             ruta:"api/telefono/guardar",
@@ -65,7 +65,7 @@ exports.Inicio = async (req, res)=>{
               nombre: "Nombre de proveedor. Obligatorio",
              
             },
-            descripcion: "Guardar todos los datos de los Proveedores"
+            descripcion: "Guardar todos los datos de los Telefonos de los Proveedores"
           },
           {
             ruta:"api/telefono/eliminar",
@@ -107,7 +107,7 @@ exports.Listar = async (req,res)=>{
   try{
 
     const lista = await ModeloTelefonoProveedores.findAll(); 
-    console.log(JSON.stringfy(lista, null, 2));  
+    console.log(JSON.stringfy(lista, null));  
     msj.mensaje = 'Peticion procesada correctamente ';
      
     res.json(lista); 
@@ -214,7 +214,7 @@ exports.Listar = async (req,res)=>{
       const validaciones = validationResult(req);
       console.log(validaciones.errors[0]);
       console.log(req.body);
-      const { telefono, idproveedores } = req.body;
+      const { telefono, proveedores_id } = req.body;
      // const { nombre } = req.body;
       var msj = {
           mensaje: ''
@@ -235,7 +235,7 @@ exports.Listar = async (req,res)=>{
               } else {
                  await ModeloTelefonoProveedores.create({
                   telefono: telefono,
-                  idproveedores: idproveedores
+                  id: proveedores_id
                  });
               }
   
