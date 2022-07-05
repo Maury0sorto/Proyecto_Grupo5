@@ -13,8 +13,9 @@ app.use(express.json());
 
 
 app.use('/api/', require('./rutas'));   
-app.use('/api/', require('./rutas/index'));
-app.use('/api/proveedores', require('./rutas/RutasProveedores'));     
+app.use('/api/prueba', require('./rutas/index'));  
+//app.use('/api/prueba', require('./rutas/')); 
+app.use('/api/proveedores',require('./rutas/RutasProveedores'))
 app.use('/api/telefono', require('./rutas/RutasTelefonoProveedores'));     
 app.use('/api/detallecompra', require('./rutas/RutasDetalleCompra'));     
 

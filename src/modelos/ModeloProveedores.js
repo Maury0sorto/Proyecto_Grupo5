@@ -10,34 +10,34 @@ const Proveedores = db.define(
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false,
+        allowNull: false
      //   field: 'IdProveedor',
       },
 
         nombre: {
             type: DataTypes.STRING(45),
             allowNull: false,
-        //    field: "NombreProveedor",
+            field: "Nombre",
         },
         rtn:{
             type: DataTypes.STRING(45),
-            allowNull: false, 
+            allowNull: true 
          //   field: "RtnProveedor",
         },
         direccion:{
             type: DataTypes.TEXT,
-            allowNull: true,
+            allowNull: true
         //    field: "DireccionProveedor",
         },
-        fechahora:{
-            type: DataTypes.DATE, 
-            allowNull: true, 
-            defaultValue: new Date()
-        } ,
+       fechahora:{
+           type: DataTypes.DATE, 
+           allowNull: true, 
+           defaultValue: new Date()
+       } ,
         correo:{  //hacer validacion de correo 
             type: DataTypes.STRING(250),
             allowNull: true,
-            defaultValue: false,
+            defaultValue: false
          //   field: "CorreoProveedor",
         }
     },

@@ -13,7 +13,7 @@ rutas.post('/post/', controladorInicial.EjemploPost);
 
 //rutas.get('/listarproveedores/', listarproveedores.Listar);
 //rutas.get('/guardarproveedores/', guardarproveedores.Guardar);
-// rutas.get('/detallecompras', controladorInicial.detallecompras);  
+//rutas.get('/detallecompras', controladorInicial.detallecompras);  
 
 
 module.exports = rutas;

@@ -115,7 +115,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
 
 
 ////////////////////// Inicio Funcion Guardar ////////////////////////////
-  exports.Guardar = async (req, res) => {
+ /* exports.Guardar = async (req, res) => {
     const validaciones = validationResult(req);
 
     
@@ -193,6 +193,97 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
 
     res.json(msj); 
     };
-    
+    */
 
     //////////////////////////// Fin Funcion Guardar //////////////////
+
+    exports.Guardar = async(req, res) => {
+      const validaciones = validationResult(req);
+      console.log(validaciones.errors[0]);
+      console.log(req.body);
+     // const { nombre, rtn } = req.body;
+      const { nombre } = req.body;
+      var msj = {
+          mensaje: ''
+      };
+      if (validaciones.errors.length > 0) {
+          validaciones.errors.forEach(element => {
+              msj.mensaje += element.msg + ' . ';
+  
+          });
+  
+      } else {
+          try {
+              if (!nombre) {
+                  await ModeloProveedores.create({
+                    Nombre: nombre,
+  
+                  });
+              } else {
+                 await ModeloProveedores.create({
+                   Nombre: nombre,
+                     Rtn: rtn
+                 });
+              }
+  
+              msj.mensaje = 'Registro Guardado correctamente';
+  
+          } catch (error) {
+              console.error(error);
+              msj.mensaje = 'Error Al Guardar los Datos ';
+          }
+  
+      }
+      res.json(msj);
+  };
+
+
+  /////////////////////////  Eliminar ////////////////////////////////////////
+
+  exports.Eliminar = async(req, res) => {
+    const validaciones = validationResult(req);
+    console.log(validaciones.errors[0]);
+    console.log(req.body);
+    const { id } = req.query;
+    const msj = {
+
+        mensaje: ""
+
+    };
+
+    if (validaciones.errors.length > 0) {
+        validaciones.errors.forEach(element => {
+            msj.mensaje += element.msg + ' . ';
+
+        });
+
+    } else {
+        try {
+            var buscarProveedor = await ModeloProveedores.findOne({
+                where: {
+                    idProveedor: id
+                }
+
+            });
+            if (!buscarProveedor) {
+                msj.mensaje = 'No Existe el ID Del Proveedor';
+            } else {
+                await ModeloProveedores.destroy({
+                    where: {
+                      idProveedor: id
+                    }
+
+                });
+
+                msj.mensaje = 'Registro Eliminado Correctamente';
+            }
+        } catch (error) {
+            console.error(error);
+            msj.mensaje = 'Error Al Eliminar los Datos ';
+        }
+
+    }
+    res.json(msj);
+};
+
+  /////////////////////////  Fin Eliminar ////////////////////////////////////////
