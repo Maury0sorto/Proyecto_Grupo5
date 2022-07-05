@@ -49,24 +49,31 @@ function validacion (req){
               ruta:"api/compras",
               metodo:"get",
               parametros:"",
-              descripcion: "Inicio del módulo de Copras"
+              descripcion: "Inicio del módulo de Compras"
             },
             {
               ruta:"api/compras/listar",
               metodo:"get",
               parametros:"",
-              descripcion: "Lista todos los Proveedores"
+              descripcion: "Lista todas las compras"
             },
             {
               ruta:"api/compras/guardar",
               metodo:"post",
               parametros:{
-                nombre: "Nombre de proveedor. Obligatorio",
-                rtn: "RTN de el proveedor. Obligatorio",
-                correo: "Correo del proveedor. Obligatorio",
+                numerofactura: "Numero De la Factura. Obligatorio",
+                tipopago: "Tipo de Pago de la factura. Obligatorio",
+                exento: "Exento de la factura. Obligatorio",
+                impuesto15: "cantidad de impuesto15. Obligatorio",
+                impuesto18: "cantidad de impuesto18. Obligatorio",
+                exonerado: "Exonerado de la factura. Obligatorio",
+                total: "Total de la factura. Obligatorio",
+                usuarios_idregistro: "Id de usuario de la factura. Obligatorio",
+                proveedores_id: "Id de proveedor de la factura. Obligatorio",
+                estaciones_NumeroEstacion: "Numero de estacion de la factura. Obligatorio",
   
               },
-              descripcion: "Guardar todos los datos de los Proveedores"
+              descripcion: "Guardar todos los datos de las Compras"
             },
           ],
         }
@@ -75,6 +82,7 @@ function validacion (req){
     const datos = {
       api: "API-PROYECTO GRUPO 5",
       descripcion: "Interfaz de progamación de compras",
+      Modulo:"Compras",
       propiedad: "Grupo5",
       desarrollador: "Mauricio Zavala Osorto",
       colaboradores: "",
@@ -111,7 +119,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
 
 
     ////////////////////// Inicio Funcion Guardar ////////////////////////////
-  exports.Guardar = async (req, res) => {
+  /*exports.Guardar = async (req, res) => {
     const validaciones = validationResult(req);
 
     
@@ -188,7 +196,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar o guardar
         msj.mensaje = 'Datos Guardados Exitosamente';
 
     res.json(msj); 
-    };
+    }; */
     
 
     //////////////////////////// Fin Funcion Guardar //////////////////

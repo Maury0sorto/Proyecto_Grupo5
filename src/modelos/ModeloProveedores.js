@@ -39,12 +39,12 @@ const Proveedores = db.define(
             allowNull: true, //
             defaultValue: false,
          //   field: "CorreoProveedor",
-        }
+        },
     },
 
     {
         tableName: 'proveedores', //nombre de la tabla, esta debe estar nombrada de igual manera que en la base de datos
-        timestamps: 'false',
+        timestamps: false,
     }
 
     );  

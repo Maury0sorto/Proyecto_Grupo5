@@ -10,20 +10,35 @@ rutas.get('/', ControladorTelefono.Inicio);
 rutas.get('/listar', ControladorTelefono.Listar);
 ///////////////////////// Fin Listar /////////////////////////
 
+
+rutas.get('/listar2',(req, res)=>{
+    req.getConnection((err, conn)=>{
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM telefono_proveedores', (err, rows)=>{
+            if(err) return res.send(err)
+
+            res.json(rows)
+        })
+    })
+});
+
+
+
 /////////////////////// Guardar  //////////////////////////////////
 rutas.post('/guardar' ,
-body('Telefono').notEmpty().withMessage('Debe escribir el numero de telefono del proveedor') 
+body('telefono').notEmpty().withMessage('Debe escribir el numero de telefono del proveedor') 
 .isLength({min: 8}).withMessage('Debe ingresar un telefono con minimo 8 caracteres'), 
 
-body('Id').notEmpty().withMessage('Debe escribir id del Proveedor') 
-.isInt().withMessage('El id del Proveedor debe ser un numero entero'),
+//body('idproveedores').notEmpty().withMessage('Debe escribir id del Proveedor') 
+//.isInt().withMessage('El id del Proveedor debe ser un numero entero'),
 
 ControladorTelefono.Guardar);
 ////////////////////// Fin Guardar //////////////////////////
 
 ////////////////// Eliminar ////////////////////////////////////
 rutas.delete('/eliminar',
-    query('Telefono').notEmpty().withMessage('Debe escribir el numero de telefono del Proveedor')
+    query('Ttelefono').notEmpty().withMessage('Debe escribir el numero de telefono del Proveedor')
     .isLength({min: 8}).withMessage('Debe ingresar un telefono con minimo 8 caracteres'), 
     ControladorTelefono.Eliminar);
 

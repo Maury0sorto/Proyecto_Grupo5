@@ -1,6 +1,7 @@
 
 const {body, validationResult, query } = require ('express-validator');
-//const Proveedores = require('../modelos/ModeloProveedores');
+const Proveedor = require('../modelos/ModeloProveedores');
+const Telefono = require('../modelos/ModeloTelefonoProveedores');
 const ModeloProveedores = require('../modelos/ModeloProveedores');
 const msjRes = require('../../src/componentes/mensaje');
 
@@ -54,7 +55,7 @@ exports.Inicio = async (req, res)=>{
             descripcion: "Inicio del módulo de Proveedores"
           },
           {
-            ruta:"api/proveedores/listar",
+            ruta:"api/proveedores/listar2",
             metodo:"get",
             parametros:"",
             descripcion: "Lista todos los Proveedores"
@@ -108,7 +109,7 @@ exports.Listar = async (req,res)=>{   //Esta es listar
   try{
 
     const lista = await ModeloProveedores.findAll(); 
-    console.log(JSON.stringfy(lista, null, 2));  
+    console.log(JSON.stringfy(lista, null));  
     msj.mensaje = 'Peticion procesada correctamente ';
      
     res.json(lista); 
@@ -227,13 +228,13 @@ exports.Listar = async (req,res)=>{   //Esta es listar
           try {
               if (!nombre) {
                   await ModeloProveedores.create({
-                    Nombre: nombre,
+                    nombre: nombre,
   
                   });
               } else {
                  await ModeloProveedores.create({
-                   Nombre: nombre,
-                     Rtn: rtn
+                   nombre: nombre,
+                     rtn: rtn
                  });
               }
   
@@ -298,3 +299,54 @@ exports.Listar = async (req,res)=>{   //Esta es listar
 };
 
   /////////////////////////  Fin Eliminar ////////////////////////////////////////
+
+
+/////////////////////////// Buscar /////////////////////////////////////////////
+  exports.BuscarFiltro = async (req, res)=>{
+    var msj = validacion(req);
+    const { id } = req.query;
+    if (msj.errores.length > 0){
+        msjRes(res, 200, msj);
+    }
+    else{
+        const filtro = '%' + req.query.filtro + '%';
+        const limite = req.query.limite;
+        try {
+            const lista = await Proveedor.findAll({
+                include: {
+                    model: Telefono,
+                    attributes:['telefono'],
+                },
+                where:{
+                    [Op.or]:[
+                        {npmbre: {[Op.like]: filtro}},
+                        {rtn: {[Op.like]: filtro}}
+                       // {apellido: {[Op.like]: filtro}}
+                    ]
+                },
+                limit: 10,
+            });
+            if (lista.length==0){
+                msj.estado = 'precaucion';
+                msj.mensaje = 'La peticion se ejecuto correctamente';
+                msj.errores={
+                    mensaje: 'No existe ningun empleado con esta informacion',
+                    parametro: 'filtro',
+                };
+            }
+            else{
+                console.log(JSON.stringify(lista, null, ' '));
+                msj.datos= lista;
+            }
+            msjRes(res, 200, msj);
+        } catch (error) {
+            console.error(error);
+            msj.estado = 'error';
+            msj.mensaje = 'La peticion no se ejecuto';
+            msj.errores = error;
+            msjRes(res, 500, msj);
+        }
+    }        
+};
+
+///////////////////////// Fin Buscar  ///////////////////////////

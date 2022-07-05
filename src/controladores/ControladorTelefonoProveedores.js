@@ -229,13 +229,13 @@ exports.Listar = async (req,res)=>{
           try {
               if (!telefono) {
                   await ModeloTelefonoProveedores.create({
-                    Telefono: telefono,
+                    telefono: telefono,
   
                   });
               } else {
                  await ModeloTelefonoProveedores.create({
-                  Telefono: telefono,
-                     Id: idproveedores
+                  telefono: telefono,
+                  idproveedores: idproveedores
                  });
               }
   

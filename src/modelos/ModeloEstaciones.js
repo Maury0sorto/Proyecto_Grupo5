@@ -25,11 +25,11 @@ const Estaciones = db.define(
                 defaultValue: '1',   
     },      
 
-           vistaprevia: {
-                type: DataTypes.BOOLEAN,
-                allowNull: true,
-                defaultValue: '0',   
-    },
+          vistaprevia: {
+        type: DataTypes.BOOLEAN,
+           allowNull: true,
+       // defaultValue: '0',    
+   },
 
        tecladovirtual: {
                 type: DataTypes.BOOLEAN,

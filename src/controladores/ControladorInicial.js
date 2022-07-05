@@ -7,6 +7,8 @@ exports.Inicio = (req, res) =>{
         {modulo: "Proveedores", ruta: "/api/proveedores"},
         //{"Listar Proveedores", ruta: "/api/listarproveedores"},
         {modulo: "Telefono", ruta: "/api/telefono"},
+        {modulo: "Compras", ruta: "/api/compras"},
+        {modulo: "Estaciones", ruta: "/api/estaciones"},
     ];
     const msj ={
         Nombre: "API Grupo5 Compras",

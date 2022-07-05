@@ -6,34 +6,37 @@ const Telefono = db.define(
     'telefonoproveedores',
     {
         id:{
-            type: DataTypes.INTEGER, 
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
+            
           //  field: "IdTelefonoProveedor"
         },
 
         contacto: {
             type: DataTypes.STRING(45),  
-            allowNull: false,
+            allowNull: true ,
+            defaultValue: false,
          //   field: "ContactoTelefonoProveedor",
         },
 
         telefono:{
             type: DataTypes.STRING(45),  
-            allowNull: false,
+            allowNull: true ,
+            defaultValue: false,
          //   field: "TelefonoProveedor",
         }
       
     },
     {
         tableName: 'telefono_proveedores',
-        Timestamps: 'false',
+        timestamps: false,
     }
 
  );
 
- Proveedores.hasMany(Proveedores,{
+ Proveedores.hasMany(Telefono,{
     foreignKey: 'proveedores_id',
     otherKey: 'id'
  });
