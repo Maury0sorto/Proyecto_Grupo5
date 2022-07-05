@@ -1,11 +1,11 @@
-const { DataTypes } = require('sequelize');  
+const { DataTypes } = require('sequelize');    //tipo de manejo de datos
 const db = require('../configuraciones/db');
 const Proveedores = db.define(
 
 
 ////// Modelo De proveedores Mauricio  Zavala ///////////
-    'proveedores',
-    {
+    'proveedores',  //nombre del modelo
+    {       //estos son datos de las tablas
       id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -43,10 +43,10 @@ const Proveedores = db.define(
     },
 
     {
-        tableName: 'proveedores',
+        tableName: 'proveedores', //nombre de la tabla, esta debe estar nombrada de igual manera que en la base de datos
         timestamps: 'false',
     }
 
     );  
 
-module.exports = Proveedores;
+module.exports = Proveedores; //exportacion del modelo

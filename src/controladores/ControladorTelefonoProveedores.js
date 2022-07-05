@@ -84,6 +84,7 @@ exports.Inicio = async (req, res)=>{
   const datos = {
     api: "API-PROYECTO GRUPO 5",
     descripcion: "Interfaz de progamación de compras",
+    modulo: "Telefono Proveedores",
     propiedad: "Grupo5",
     desarrollador: "Mauricio Zavala Osorto",
     colaboradores: "",
