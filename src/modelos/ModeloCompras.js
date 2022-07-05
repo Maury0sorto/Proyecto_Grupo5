@@ -1,5 +1,9 @@
 const { DataTypes } = require('sequelize');  
 const db = require('../configuraciones/db');
+const Usuario = require('./ModeloUsuarios');
+const Proveedores = require('./ModeloProveedores');
+const Estaciones = require('./ModeloEstaciones');
+const e = require('express');
 const Compras = db.define(
     'compras',
     {
@@ -16,20 +20,7 @@ const Compras = db.define(
             field: "NumeroFactura",
             
         },
-        idproveedores:{
-            type: DataTypes.INTEGER, 
-            foreignKey: true,
-            allowNull: false,
-            field: "IdProveedores",
-        },
-
-        idregistrousuario:{
-            type: DataTypes.INTEGER, 
-            foreignKey: true,
-            allowNull: false,
-            field: "idregistro",
-        }  ,
-
+    
         tipopago: {
             type: DataTypes.ENUM('CONTADO','CREDITO'),
             allowNull: true,
@@ -42,13 +33,7 @@ const Compras = db.define(
             allowNull: true, 
             defaultValue: new Date()
         },
-        estaciones_NumeroEstacion:{
-            type: DataTypes.INTEGER, 
-            foreignKey: true,
-            allowNull: false,
-            field: "NumeroEstacion",
-        },
-
+        
         descuentos:{
             type: DataTypes.DOUBLE,  
             allowNull: true, 
@@ -98,5 +83,43 @@ const Compras = db.define(
         timestamps: 'false',
     }
     );  
+
+
+    ////////////////////////////////////////////////////////
+    Usuario.hasMany(Compras,{
+        foreignKey: 'usuarios_idregistro',
+        otherKey: 'idregistro'
+     });
+    
+     Compras.belongsTo(Usuario,{
+        foreignKey: 'usuarios_idregistro',
+        otherKey: 'idregistro'
+     }); 
+/////////////////////////////////////////////////////////////
+
+Proveedores.hasMany(Compras,{
+    foreignKey: 'idproveedores',
+    otherKey: 'id'
+ });
+
+ Compras.belongsTo(Proveedores,{
+    foreignKey: 'idproveedores',
+    otherKey: 'id'
+ }); 
+  //////////////////////////////////////////////////////////////  
+
+  Estaciones.hasMany(Compras,{
+    foreignKey: 'estaciones_NumeroEstacion',
+    otherKey: 'NumeroEstacion'
+ });
+
+ Compras.belongsTo(Estaciones,{
+    foreignKey: 'estaciones_NumeroEstacion',
+    otherKey: 'NumeroEstacion'
+ }); 
+
+
+
+
 
     module.exports = Compras;

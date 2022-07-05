@@ -101,7 +101,7 @@ msj.datos=datos;
 
 
 ///////////////////// Funcion listar /////////////////////////////
-exports.Listar = async (req,res)=>{   //Esta es listar o guardar
+exports.Listar = async (req,res)=>{   //Esta es listar 
   var msj = {
     mensaje: '' 
   }

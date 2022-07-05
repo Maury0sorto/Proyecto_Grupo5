@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');  
 const db = require('../configuraciones/db');
+const Productos = require('./ModeloProductos');
+const Inventario = require('./ModeloInventarios');
 const MovimientoProductos = db.define(
 ////// Modelo De Movimiento Productos by Oscar Martinez ///////////
     'movimiento_productos',
@@ -18,9 +20,9 @@ const MovimientoProductos = db.define(
             field: 'Fecha del movimiento',
         },
         tipo:{
-            type: DataTypes.ENUM(/*AQUI NO SE CUALES SON LOS VALORES EN LA BASE DE DATOS (ASIGNAR)*/''),  
+            type: DataTypes.ENUM('INGRESO', 'EGRESO', 'INVENTARIO'),  
             allowNull: false, 
-            defaultValue: /*'AQUI TAMPOCO SE :)'*/ '',
+            defaultValue:'INGRESO',
             field: 'tipo de movimiento',
         },
         cantidad:{
@@ -42,16 +44,7 @@ const MovimientoProductos = db.define(
             allowNull: true, 
             field: 'Existencia actual',
         },
-        productos_Codigo:{
-            type: DataTypes.STRING(15), 
-            allowNull: false, 
-            field: 'Codigo del producto',
-        },
-        inventarios_id:{
-            type: DataTypes.INTEGER, 
-            allowNull: false, 
-            field: 'Codigo de inventario',
-        },
+    
         idusuario:{
             type: DataTypes.INTEGER,
             allowNull:false,
@@ -65,5 +58,36 @@ const MovimientoProductos = db.define(
     }
 
     );  
+
+
+/////////////////////////////////////////////
+Productos.hasMany(MovimientoProductos,{
+    foreignKey: 'productos_Codigo',
+    otherKey: 'Codigo'
+});
+    
+MovimientoProductos.belongsTo(Productos,{
+    foreignKey: 'productos_Codigo',
+    otherKey: 'Codigo'
+});
+
+///////////////////////////////////
+
+
+
+Inventario.hasMany(MovimientoProductos,{
+    foreignKey: 'inventarios_id',
+    otherKey: 'id'
+});
+    
+MovimientoProductos.belongsTo(Inventario,{
+    foreignKey: 'inventarios_id',
+    otherKey: 'id'
+});
+
+///////////////////////////////////
+
+
+
 
 module.exports = MovimientoProductos;

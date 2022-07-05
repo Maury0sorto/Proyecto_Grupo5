@@ -43,16 +43,7 @@ const DetalleCompras = db.define(
             allowNull: true, 
             field: 'Nota',
         },
-        // compras_id:{
-        //     type: DataTypes.INTEGER, 
-        //     allowNull: false, 
-        //     field: 'Id de la compra',
-        // },
-        // productos_Codigo:{
-        //     type: DataTypes.STRING(15), 
-        //     allowNull: true,
-        //     field: 'Codigo del producto', 
-        // }
+       
     },
 
     {
@@ -62,23 +53,28 @@ const DetalleCompras = db.define(
 
     );  
 
+////////////////////////////////////
     Productos.hasMany(Productos,{
-        foreignKey: 'idproductos',
+        foreignKey: 'productos_Codigo',
         otherKey: 'id'
      });
     
      DetalleCompras.belongsTo(Productos,{
-        foreignKey: 'idproductos',
+        foreignKey: 'productos_Codigo',
         otherKey: 'id'
      });
 
-Compras.hasMany(Compras,{
-    foreignKey: 'idcompras',
+
+/////////////////////////////////////////////
+Compras.hasMany(DetalleCompras,{
+    foreignKey: 'compras_id',
     otherKey: 'id'
 });
     
 DetalleCompras.belongsTo(Compras,{
-    foreignKey: 'idcompras',
+    foreignKey: 'compras_id',
     otherKey: 'id'
 });
+
+///////////////////////////////////
 module.exports = DetalleCompras;

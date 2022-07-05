@@ -34,13 +34,13 @@ const Telefono = db.define(
  );
 
  Proveedores.hasMany(Proveedores,{
-    foreignKey: 'idproveedores',
+    foreignKey: 'proveedores_id',
     otherKey: 'id'
  });
 
  Telefono.belongsTo(Proveedores,{
-    foreignKey: 'idproveedores',
+    foreignKey: 'proveedores_id',
     otherKey: 'id'
- });
+ }); 
 
  module.exports = Telefono;

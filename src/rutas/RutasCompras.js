@@ -5,6 +5,6 @@ const ControladorCompras = require('../controladores/ControladorCompras');
 const rutas = Router();
 
 rutas.get('/', ControladorCompras.Inicio);
-
+rutas.get('/listar', ControladorCompras.Listar);
 
 module.exports = rutas;

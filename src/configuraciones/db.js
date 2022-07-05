@@ -2,7 +2,7 @@ const sequelize = require('sequelize');
 const db = new sequelize(
 
    // 'Compras', //'nombre de la base de datos',  //compras
-   'sigresdesarrollo',
+ /*  'sigresdesarrollo',
    'compras', 
    'Compras1@', 
     {
@@ -12,6 +12,17 @@ const db = new sequelize(
         port: 4306, 
 
     }
+);*/
+
+'compras', 
+'root', 
+'123456', 
+ {
+     host: 'localhost', 
+     dialect: 'mysql',
+     port: 3306, 
+
+ }
 );
 
 module.exports = db; //que aca se encuentra la configuracion de la base de datos
