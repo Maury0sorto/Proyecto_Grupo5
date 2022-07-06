@@ -257,7 +257,7 @@ exports.Listar = async (req,res)=>{
     const validaciones = validationResult(req);
     console.log(validaciones.errors[0]);
     console.log(req.body);
-    const { idproveedores } = req.query;
+    const { idproveedores, telefono  } = req.query;
     const msj = {
 
         mensaje: ""

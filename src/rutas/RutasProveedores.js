@@ -44,7 +44,7 @@ ControladorProveedores.Guardar);
 
 ////////////////// Eliminar ////////////////////////////////////
 rutas.delete('/eliminar',
-    query('idProveedor').notEmpty().withMessage('Debe escribir el id del Proveedor')
+    query('id').notEmpty().withMessage('Debe escribir el id del Proveedor')
     .isInt().withMessage('El id del Proveedor debe ser un numero entero'),
     ControladorProveedores.Eliminar);
 
